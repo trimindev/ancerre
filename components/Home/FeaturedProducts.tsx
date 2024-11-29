@@ -9,7 +9,7 @@ function FeaturedProducts() {
       oldPrice: "$499.99",
       newPrice: "$399.99",
       image: "/image/1.jpg",
-      colors: ["#FF5733", "#33FF57", "#3357FF"],
+      colors: ["#111827", "#172554", "#c7955a", "#000000"],
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ function FeaturedProducts() {
       oldPrice: "$799.99",
       newPrice: "$699.99",
       image: "/image/2.jpg",
-      colors: ["#FF5733", "#33FF57"],
+      colors: [],
     },
     {
       id: 3,
@@ -25,23 +25,29 @@ function FeaturedProducts() {
       oldPrice: "$299.99",
       newPrice: "$249.99",
       image: "/image/1.jpg",
-      colors: ["#FF5733", "#3357FF", "#33FF57", "#F1C40F"],
+      colors: ["#111827", "#c7955a", "#ffffff", "#000000"],
+    },
+    {
+      id: 4,
+      name: "Modern Bathroom Sink",
+      oldPrice: "$199.99",
+      newPrice: "$149.99",
+      image: "/image/2.jpg",
+      colors: ["#111827", "#172554", "#c7955a", "#ffffff", "#000000"],
     },
   ];
 
   return (
-    <div className="py-16 px-6 max-w-screen-xl mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-8">
+    <div className="py-6 sm:py-10 px-2 max-w-screen-xl mx-auto">
+      <h2 className="text-3xl font-americana text-center mb-6 sm:mb-10">
         Featured Products
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white shadow-md rounded-xl overflow-hidden"
-          >
+          <div key={product.id} className="cursor-pointer">
             {/* Product Image */}
-            <div className="relative w-full aspect-[4/3]">
+            <div className="relative w-full aspect-square rounded-md overflow-hidden">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -49,29 +55,33 @@ function FeaturedProducts() {
                 objectFit="cover"
               />
             </div>
-            <div className="p-4">
+            <div className="p-1 sm:p-2">
               {/* Product Name and Price */}
-              <h3 className="text-xl font-semibold">{product.name}</h3>
+              <h3 className="sm:text-lg font-americana font-bold">
+                {product.name}
+              </h3>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center mt-1">
                 {/* Product Price */}
-                <div className="flex items-center mt-2 space-x-2">
-                  <span className="text-lg text-gray-500 line-through">
+                <div className="space-x-1">
+                  <span className="text-xs text-gray-500 line-through">
                     {product.oldPrice}
                   </span>
-                  <span className="text-xl font-bold text-neutral-950">
+                  <span className="text-sm font-medium text-neutral-950">
                     {product.newPrice}
                   </span>
                 </div>
+
                 {/* Color Indicators */}
-                <div className="relative flex items-center mt-4">
+                <div className="flex items-center justify-end h-4 -mr-1 sm:-mr-2">
                   {product.colors.map((color, index) => (
                     <div
                       key={index}
-                      className="w-6 h-6 rounded-full absolute"
+                      className={`w-3 h-3 rounded-full shadow-lg border-white border-[1px]`}
                       style={{
                         backgroundColor: color,
-                        right: `${index * 12}px`,
+                        marginRight:
+                          index === product.colors.length - 1 ? "0" : "-3px",
                       }}
                     />
                   ))}
